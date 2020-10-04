@@ -1,0 +1,38 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+
+int main() {
+	int n,sum=0,i;
+	char str[10];
+	scanf("%d", &n);
+	for (i = 0;; i++) {
+		sum+= n % 10;
+		n = n / 10;
+		if (n == 0) {
+			break;
+		}
+		sum *= 10;
+
+	}
+	sprintf(str, "%d", sum);
+
+	printf("%s", str);
+}
+
+#pragma warning(disable:4996)
+#include<stdio.h> 
+
+int main() {
+	char str[10];
+	int i, n;
+	scanf("%d", &n);
+
+	for (i = 0; n > 0; i++) {
+		str[i] = n % 10 + '0';
+		n = n / 10;
+	}
+	str[i] = '\0';
+	printf("%s", str);
+	return 0;
+
+}
