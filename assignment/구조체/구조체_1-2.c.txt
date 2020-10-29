@@ -1,0 +1,104 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+struct student {
+	char name[10], num[11], avg[2];
+};
+int main() {
+	struct student st[5];
+	int i, j,cnt=0;
+	char whatname[10];
+
+	for (i = 0; i < 5; i++) {
+		scanf("%s %s %s", st[i].name, st[i].num, st[i].avg);
+	}
+
+	scanf("%s", whatname);
+
+	for (i = 0; i < 5; i++) {
+		if (strcmp(whatname,st[i].name)==0) {
+			for (j = 0; j < 5&&j!=i; j++) {
+				if (strcmp(st[i].avg, st[j].avg) == 0&&(st[i].num[3]==st[j].num[3])) {
+					printf(" %s\n", st[j].name);
+					cnt++;
+				}
+				
+			}
+		}
+		
+	}
+	if (cnt == 0) {
+		printf("0");
+	}
+}
+====================================
+#pragma warning(disable:4996) 와 시발 j!=i 이거하나 자리 바꿨다고 100점나오넹존나말안돼
+#include<stdio.h> 
+#include<string.h>
+
+struct student {//3번째... ㅅㅂ... 왜안돼..왜왜오애ㅣㅣ...
+	char name[10], num[11], avg[2];
+};
+int main() {
+	struct student st[5];
+	int i, j,cnt=0;
+	char whatname[10];
+
+	for (i = 0; i < 5; i++) {
+		scanf("%s %s %s", st[i].name, st[i].num, st[i].avg);
+	}
+
+	scanf("%s", whatname);
+
+	for (i = 0; i < 5; i++) {
+		if (strcmp(whatname,st[i].name)==0) {
+			for (j = 0; j < 5; j++) {
+				if (strcmp(st[i].avg, st[j].avg) == 0&&(st[i].num[3]==st[j].num[3])&&j!=i) {
+					printf(" %s\n", st[j].name);
+					cnt++;
+				}
+				
+			}
+		}
+		
+	}
+	if (cnt == 0) {
+		printf("0");
+	}
+}
+==================================================
+#pragma warning(disable:4996)// 와 시발 j!=i 이거하나 자리 바꿨다고 100점나오넹존나말안돼
+#include<stdio.h> 
+#include<string.h>
+
+struct student {//3번째... ㅅㅂ... 왜안돼..왜왜오애ㅣㅣ...
+	char name[10], num[11], avg[2];//이름,학번,학점
+};
+int main() {
+	struct student st[5];//5번입력받을거니까.
+	int i, j, cnt = 0;
+	char whatname[10];//이름크기는 문자열상에서 10을 넘지 않음
+
+	for (i = 0; i < 5; i++) {
+		scanf("%s %s %s", st[i].name, st[i].num, st[i].avg);//입력받기
+	}
+
+	scanf("%s", whatname);//찾으려는 이름 입력
+
+	for (i = 0; i < 5; i++) {
+		if (strcmp(whatname, st[i].name) == 0) {//만약 구조체내에서 이름과 입력받은 이름이 같다면
+			for (j = 0; j < 5; j++) {
+				if (strcmp(st[i].avg, st[j].avg) == 0 && (st[i].num[3] == st[j].num[3]) && j != i) {//학점도 같고, 입학년도도 같은데, 같은 사람은 아니여야 함
+					printf(" %s\n", st[j].name);//이름 출력!!
+					cnt++;//조건에 맞는 학생이 없을때 0 출력하기 위해
+				}
+
+			}
+		}
+
+	}
+	if (cnt == 0) {//조건에 맞는 학생이 없다는 뜻.
+		printf("0");//0출력해요우
+	}
+}

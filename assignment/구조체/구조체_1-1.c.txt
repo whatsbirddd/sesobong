@@ -1,0 +1,49 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+struct student {
+	char name[10], num[11], avg[2];
+};
+int main() {
+	struct student st[5];
+	int i, j;
+	char whatname[10];
+
+	for (i = 0; i < 5; i++) {
+		scanf("%s %s %s", st[i].name, st[i].num, st[i].avg);
+	}
+
+	scanf("%s", whatname);
+
+	for (i = 0; i < 5; i++) {
+		if (strcmp(whatname,st[i].name)==0) {
+			printf(" %s %s", st[i].num, st[i].avg);
+		}
+	}
+}
+===================================================
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+struct student {//구조체 선언
+	char name[10], num[11], avg[2];//이름 학번 학점 배열
+};
+int main() {
+	struct student st[5];//5명 입력받을 것이므로..
+	int i, j;
+	char whatname[10];//이름은 널포함해서 10문자 이하
+
+	for (i = 0; i < 5; i++) {//5번 입력받기
+		scanf("%s %s %s", st[i].name, st[i].num, st[i].avg);//문자열로 입력받기 때문에 
+	}
+
+	scanf("%s", whatname);//무슨 이름인지 입력받기
+
+	for (i = 0; i < 5; i++) {//구조체를 5번 훑는다.
+		if (strcmp(whatname, st[i].name) == 0) {//만약 입력받았던 이름과 구조내에서 입력받았던 이름이 같다면
+			printf(" %s %s", st[i].num, st[i].avg);//학번하고 학점출력
+		}
+	}
+}

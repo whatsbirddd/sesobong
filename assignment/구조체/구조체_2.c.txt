@@ -1,0 +1,87 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+struct _bank {
+    int id; // 아이디, T1, T2, T3 대신, 1, 2, 3, ... 으로 한다. 
+    int arrival_time; // 도착시간
+    int service_time; // 서비스시간
+    int waiting_time; // 대기시간
+};
+void waitingtime(struct _bank guest[], int N) {
+    int i,sum=0;
+    for (i = 0; i < N; i++) {
+        if (i == 0) {
+            guest[i].waiting_time = 0;
+        }
+        
+        else {
+            guest[i].waiting_time = sum - guest[i].arrival_time;
+        }
+        sum += guest[i].service_time;
+
+    }
+}
+double avgtime(struct _bank guest[], int N) {
+    int i;
+    double sum = 0;
+    for (i = 0; i < N; i++) {
+        sum += guest[i].waiting_time;
+    }
+    return sum / N;
+}
+int main() {
+    struct _bank guest[100];
+    int n, i;
+    scanf("%d", &n);
+    for (i = 0; i < n; i++) {
+        scanf("%d %d %d", &guest[i].id, &guest[i].arrival_time, &guest[i].service_time);
+    }
+    waitingtime(guest, n);
+    printf("%.2lf",avgtime(guest, n));
+
+}
+=================================================
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+struct _bank {
+    int id; // 아이디, T1, T2, T3 대신, 1, 2, 3, ... 으로 한다. 
+    int arrival_time; // 도착시간
+    int service_time; // 서비스시간
+    int waiting_time; // 대기시간
+};
+void waitingtime(struct _bank guest[], int N) {//함수 선언
+    int i, sum = 0;
+    for (i = 0; i < N; i++) {//대기자수만큼 반복
+        if (i == 0) {
+            guest[i].waiting_time = 0;//먼저 첫번째사람의 대기시간은 0임.
+        }
+
+        else {
+            guest[i].waiting_time = sum - guest[i].arrival_time;//첫번째사람을 제외한 사람들은 대기시간구해주기
+        }
+        sum += guest[i].service_time;//sum에 저장해줌으로써 순차적으로..쌓아나가기
+
+    }
+}
+double avgtime(struct _bank guest[], int N) {//함수선언
+    int i;
+    double sum = 0;
+    for (i = 0; i < N; i++) {//대기자수만큼 반복
+        sum += guest[i].waiting_time;//sum에 다 더해줘서
+    }
+    return sum / N;//평균을 반환하기
+}
+int main() {
+    struct _bank guest[100];//구조체
+    int n, i;
+    scanf("%d", &n);//몇번 반복할건지 입력
+    for (i = 0; i < n; i++) {
+        scanf("%d %d %d", &guest[i].id, &guest[i].arrival_time, &guest[i].service_time);//입력받기
+    }
+    waitingtime(guest, n);//함수 호출
+    printf("%.2lf", avgtime(guest, n));//함수호출해서 평균 출력하기
+
+}
