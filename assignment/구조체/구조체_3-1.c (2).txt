@@ -1,10 +1,3 @@
-marriott 4 4.7 12.5 Y
-novotel 3 3.0 2.7 N
-renaissance 3 3.5 4.8 N
-hyatt 5 3.5 7.4 Y
-bestwestern 2 2.5 3.8 Y
-0 
-3 7.5 
 
 
 #pragma warning(disable:4996)
