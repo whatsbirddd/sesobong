@@ -1,0 +1,22 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+
+int main() {
+	int n,i,len,min=105;
+	char str[105],minstr[105];
+
+	scanf("%d", &n);
+	getchar();
+
+	for (i = 0; i < n; i++) {
+		gets(str);
+		len = strlen(str);
+		if (len < min) {
+			min = len;
+			strcpy(minstr, str);
+		}
+	}
+	puts(minstr);
+}

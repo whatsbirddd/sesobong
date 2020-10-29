@@ -1,0 +1,37 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+
+int main() {
+	char str[100];
+	int i,j,count=0;
+
+	scanf("%s", str);
+	for (i = 0; i < str[i] != '\0'; i++) {
+		count++;
+	}
+
+	for (i = 0; i<count; i++) {
+		for (j = i;j<=i+count-1 ; j++) {
+			printf("%s", str+(j % count));
+		}
+		printf("\n");
+	}
+}
+
+#pragma warning(disable:4996)
+#include<stdio.h> 
+
+int main() {
+	char str[102];
+	int i, n;
+
+	scanf("%s", str);
+	n = strlen(str);
+	for (i = 0; i < n; i++) {
+		printf("%s\n", str + i);
+		str[n + i] = str[i];
+		str[n + i + 1] = '\0';
+	}
+	return 0;
+
+}

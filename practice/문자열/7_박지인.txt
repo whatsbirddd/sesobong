@@ -1,0 +1,30 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+
+
+int main() {
+	int n, number, po = 0, div = 1000;
+	const char* num[] = { "one","two","three","four","five","six","seven","eight","nine" };
+	const char* p[] = { "THO","HUN","TEN","" };
+
+	scanf("%d", &n);
+
+	for (; div != 0;) {
+		number = n / div;
+		if (number != 0) {
+			printf("%s %s", num[number - 1], p[po]);
+		}
+
+		n = n % div;
+		po++;
+		div = div / 10;
+		if (div != 0 && number != 0) {
+			printf(" ");
+		}
+
+	}
+
+	return 0;
+}

@@ -1,0 +1,36 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+
+int main(){
+	char a[82], b[13];
+	int i,j, len1,len2,cnt;
+
+	scanf("%s", a);
+	scanf("%s", b);
+
+	len1 = strlen(a);
+	len2 = strlen(b);
+
+
+	for (i = 0; i <=len1-len2; i++) {
+		for (j = i; j < len2+i; j++) {//012-012,123-012,....
+			cnt = 1;
+			if (a[j] != b[j-i]) {
+				cnt = 0;
+				break;
+			}
+		}
+		if (cnt == 1) {
+			break;
+		}
+	}
+	if (cnt ==1) {
+		printf("%d 1", len1);
+	}
+	else if(cnt==0) {
+		printf("%d 0", len1);
+	}
+
+}

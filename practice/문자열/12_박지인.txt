@@ -1,0 +1,35 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+char str[102], sub[102];
+int count = 0, count1 = 0;
+
+int main() {
+	int i, j, k, l, l1, l2;
+	gets_s(str);
+	l1 = strlen(str);
+	scanf("%s", sub);
+	l2 = strlen(sub);
+	for (i = 0; i < l1;) {
+		j = 0;
+		count = 0;
+		k = i;
+		while ((str[i] == sub[j]) && str[i] != '\0') {
+			count++;
+			i++;
+			j++;
+		}
+		if (count == l2) {
+			count1++;
+			count = 0;
+		}
+		else {
+			i = k;
+			i++;
+		}
+
+	}
+	printf("%d", count1);
+	return 0;
+}

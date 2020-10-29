@@ -1,0 +1,28 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+
+void main() {
+	char str1[42];
+	char str2[21];
+	int n,i;
+	int cnt1 = 0, cnt2 = 0;
+
+	scanf("%s", str1);
+	scanf("%s", str2);
+	scanf("%d", &n);
+
+	for (i = 0; str1[i] != '\0'; i++) {
+		cnt1++;
+	}
+	for (i = 0; str2[i] != '\0'; i++) {
+		cnt2++;
+	}
+
+	for (i = 0; i < cnt1 - n + 1; i++) {
+		str1[cnt1 - i + cnt2] = str1[cnt1 - i];
+	}
+	for (i = 0; i < cnt2; i++) {
+		str1[n + i] = str2[i];
+	}
+	printf("%s", str1);
+}
