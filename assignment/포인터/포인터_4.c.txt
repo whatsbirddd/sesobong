@@ -1,0 +1,47 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+int main() {
+	int n=0, m=0,tmp;
+	int* p, * q;
+	int a[20], b[20];
+	int i, j;
+
+	for (p = a;; p++) {
+		scanf("%d", p);
+		if (*p == 0) {
+			break;
+		}
+		n++;
+	}
+	for (p = b;; p++) {
+		scanf("%d", p);
+		if (*p == 0) {
+			break;
+		}
+		m++;
+	}
+	for (p = a+n,q=b; p < a + n + m,q<b+m; p++,q++) {
+		*p = *q;
+	}
+	for (p = a; p < a + n+m; p++) {
+		for (q = p + 1; q < a + n + m; q++) {
+			if (*p < *q) {
+				tmp = *p;
+				*p = *q;
+				*q = tmp;
+			}
+		}
+	}
+	for (p = a + n + m-1,q=b; p >=a + n,q<b+m; p--,q++) {
+		*q = *p;
+	}
+	for (p = a; p < a + n; p++) {
+		printf("%d ", *p);
+	}
+	printf("\n");
+	for (p = b; p < b + m; p++) {
+		printf("%d ", *p);
+	}
+}

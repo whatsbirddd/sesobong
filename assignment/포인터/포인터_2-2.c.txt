@@ -1,0 +1,61 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+int correct(int* arr);
+int newnum(int* arr);
+
+int main() {
+	int arr[6];
+	int* p;
+	for (p = arr; p < arr + 6; p++) {
+		scanf("%d", p);
+	}
+	printf("%d\n", correct(arr));
+	for (p = arr; p < arr + 6; p++) {
+		printf("%d ", *p);
+	}
+}
+
+int correct(int* arr) {
+	int i,*p,*q;
+	int cnt=0;
+
+	for (p = arr; p < arr + 6; p++) {
+
+		for (q = p + 1; q < arr + 6; q++) {
+			if (*p == *q) {
+				*p = newnum(arr);
+				cnt++;
+			}
+		}
+	}
+	if (cnt == 0) {
+		return 0;
+	}
+	else {
+		return 1;
+	}
+}
+int newnum(int* arr) {
+	int i, j,*p;
+	int min=46;
+	for (i = 1; i < 46; i++) {
+		for (p = arr; p < arr + 6; p++) {
+			if (*p != i) {
+				if (min > i) {
+					min = i;
+				}
+				
+			}
+			else {
+				min = 46;
+				break;
+			}
+		}
+		if (min != 46) {
+			break;
+		}
+	}
+	return min;
+}

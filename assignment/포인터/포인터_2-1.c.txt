@@ -1,0 +1,39 @@
+#pragma warning(disable:4996)
+#include <stdio.h> 
+
+int main() {
+	int ar[6], nar[6] = { 0 };
+	int* p, * q, i, j;
+	int n, cnt = 0, count = 0;
+	int num = 0;
+
+	for (p = ar; p < ar + 6; p++) {
+		scanf("%d", p);
+	}
+	for (i = 0; i < 6; i++) {
+		j = 0;
+		while (*(ar + i) != *(ar + j)) {
+			j++;
+		}
+		if (j == i) {
+			*(nar + cnt) = *(ar + i);
+			cnt++;
+		}
+	}
+	
+	for (p = nar; p < nar + cnt; p++) {
+		count = 0;
+		for (q = ar; q < ar + 6; q++) {
+			if (*p == *q) {
+				count++;
+			}
+		}
+		if (count > 1) {
+			printf("%d %d\n", *p, count);
+			num++;
+		}
+	}
+	if (num == 0) {
+		printf("0");
+	}
+}

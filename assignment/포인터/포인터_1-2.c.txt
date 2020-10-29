@@ -1,0 +1,71 @@
+#pragma warning(disable:4996)
+#include <stdio.h> 
+
+int MIN(int* ar);
+int MAX(int* ar);
+
+
+int main() {
+    int i, n, ar[100], min, max, j, count = 0;//배열, 반복수, min,max,count 선언 (갯수세기)
+    int* p, cnt = 0;
+    scanf("%d", &n);
+    for (i = 0; i < n; i++) {
+        max = 0;//먼저 0으로 초기화해주기,인덱스 값
+        min = 0;//0으로 초기화 해주기,인덱스 값
+        count = 0;//0으로 초기화
+        for (p = ar; p < ar + 100; p++) {//배열 입력받기
+            scanf("%d", p);
+            if (*p == 0) { break; }//0입력시 멈추기
+            count++;//배열 크기
+        }
+        for (j = 0; j < count; j++) {//배열 크기만큼 검사하기
+            if (*(ar + j) == MIN(ar)) {//최솟값이면
+                min = j;//인덱스 값을 저장해주고
+                break;//멈추기
+            }
+        }
+        for (j = 0; j < count; j++) {//배열 크기만큼 검사하기
+            if (*(ar + j) == MAX(ar)) {//최댓값이면
+                max = j;//최댓값의 인덱스 값 저장후
+                break;//멈추기
+            }
+        }
+        if (max < min) {//나중에 최댓값과 최솟값 사이의 숫자들을 출력해야 하므로 누가 인덱스가 더 큰지 판단해줘야 한다.중요함**
+            int tmp = max;
+            max = min;
+            min = tmp;//교환해주는 중....
+
+        }
+        cnt = 0;
+        for (j = min + 1; j < max; j++) {
+            printf("%d ", *(ar + j));//최솟값과 최댓값 사이의 수들 출력해주기
+            cnt++;
+        }
+        
+        if (cnt == 0) {
+            printf("none");
+        }
+        printf("\n");
+       
+    }
+
+}
+int MAX(int* ar) {//MAX함수(최댓값 구하는 함수)
+    int i, max = *ar;
+    for (i = 0; *(ar + i) != 0; i++) {//쓰레기값 방지를 위해 조건 추가하였음 *(ar + i)
+        if (max <= *(ar + i)) {
+            max = *(ar + i);//최댓값 비교를 통해 구하기
+        }
+    }
+    return max; //반환
+}
+
+int MIN(int* ar) {//MIN함수(최솟값 구하는 함수)
+    int i, min = *ar;
+    for (i = 0; *(ar+i)!=0; i++) {//쓰레기값 방지를 위해 조건 추가하였음 *(ar + i)
+        if (min >= *(ar + i)) {//최솟값 비교를 통해 구하기
+            min = *(ar + i);
+        }
+    }
+    return min;//반환
+}
