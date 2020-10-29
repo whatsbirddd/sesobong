@@ -1,0 +1,61 @@
+marriott 4 4.7 12.5 Y
+novotel 3 3.0 2.7 N
+renaissance 3 3.5 4.8 N
+hyatt 5 3.5 7.4 Y
+bestwestern 2 2.5 3.8 Y
+0 
+3 7.5 
+
+
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+struct hotel_info {
+	char name[31];
+	int grade;
+	double rep;
+	double dis;
+	char bf[2];
+};
+int in_hotel_info(struct hotel_info *p) {
+	struct hotel_info inf[100];
+	int i, cnt = 0;
+	for (p = inf;; p++) {
+		scanf("%s", p->name);
+		if (p->name== "0") {
+			break;
+		}
+		cnt++;
+		scanf("d %lf %lf %s", &p->grade, &p->rep, &p->dis, p->bf);
+		
+	}
+	return cnt;
+}
+void out_hotel_info(struct hotel_info* p, int N, int G, double D) {
+	struct hotel_info inf[100];
+	int i,max=0,pn;
+
+	for (p=inf; p < inf+N; p++) {
+		if (G <= p->grade && D >= p->dis) {
+			if (max < p->rep) {
+				max = p->rep;
+				
+			}
+		}
+	}
+	for (p = inf; p < inf +N; p++) {
+		if (max == p->rep) {
+			printf("%s %d %.1lf %.1lf %s", p->name, p->grade, p->rep, p->dis, p->bf);
+		}
+	}
+}
+int main() {
+	struct hotel_info inf[100], * p = inf;
+	int g;
+	double d;
+	in_hotel_info(p);
+	scanf("%d %lf", &g, &d);
+	out_hotel_info(p, in_hotel_info(p), g, d);
+
+}
