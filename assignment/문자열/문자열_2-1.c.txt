@@ -1,0 +1,22 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+int main() {
+	char str[204], tmp;//문자열 입력받는 배열과 교환하기 위한 변수
+	int i, j, len;
+
+	scanf("%s", str);//문자열 입력받기
+	len = strlen(str);//길이 확인
+
+	for (i = 0; i < len; i++) {//배열안에서 원소 하나씩 비교하면서 정렬하기
+		for (j = i; j < len; j++) {
+			if (str[i] > str[j]) {//만약 str[i]가 더크다면 srtr[j]보다
+				tmp = str[i];//swap
+				str[i] = str[j];
+				str[j] = tmp;
+			}
+		}
+	}
+	printf("%s", str);//문자열 출력!
+}

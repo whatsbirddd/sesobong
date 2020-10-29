@@ -1,0 +1,90 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+int main() {
+	char str[100];//입력받는 문자열
+	char nstr[10][100];//분리할때 쓰는 이중배열
+	int i, ii = 0, j = 0, len, num = 0;
+	char tmp[100];//swap할때 쓰는 배열
+
+	gets_s(str);//문자열 입력받기
+	len = strlen(str);//길이 구하기
+
+
+	for (i = 0; str[i] != '\0'; i++) {//널문자 전까지 확인하기
+		if (str[i] != ' ') {//만약 공백이 아니라면
+			nstr[j][ii] = str[i];//이중배열에 집어넣기
+			ii++;//다음원소자리에 넣기 위해 크기 늘려주기
+		}
+		else if (str[i] == ' ') {//만약 공백이 있다면
+			nstr[j][ii] = '\0';//이중배열 널처리해서 끝내주기
+			j++;
+			ii = 0;//다음 배열에 넣기 위해서 ii초기화 해주기
+		}
+
+	}
+	nstr[j][ii] = '\0';// 이중배열 널 처리해서 끝내주기
+
+	for (i = 0; i <= j; i++) {
+		puts(nstr[i]);//분리한 이중배열 출력하기
+	}
+
+	for (int k = 0; k < j; k++) {//이중 for문으로 분리된 단어 정렬하기
+		for (i = 0; i < j; i++) {
+			if (nstr[i][0] > nstr[i + 1][0]) {//비교하고 0번 원소가 큰다면 교환하기
+				strcpy(tmp, nstr[i]);//swap 시작~
+				strcpy(nstr[i], nstr[i + 1]);
+				strcpy(nstr[i + 1], tmp);
+			}
+		}
+	}
+
+	for (i = 0; i <= j; i++) {
+		puts(nstr[i]);//출력하기 
+	}
+}
+============================================
+다시 정리
+
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+int main() {
+	char ch[1000], nch[10][100];
+	int i,ii=0, j=0,jj=0,len;
+	char tmp[100];
+
+
+	gets_s(ch);
+	len = strlen(ch);
+	for (i = 0; i < len; i++) {
+		if (ch[i] != ' ') {
+			nch[j][jj] = ch[i];
+			jj++;
+		}
+		else if (ch[i] = ' ') {
+			nch[j][jj] = '\0';
+			j++;
+			jj = 0;
+		}
+	}
+	nch[j][jj] = '\0';
+
+	for (i = 0; i <=j; i++) {
+		printf("%s\n", nch[i]);
+	}
+	for (i = 0; i <= j; i++) {
+		for (ii = i + 1; ii <= j; ii++) {
+			if (nch[i][0] > nch[ii][0]) {
+				strcpy(tmp, nch[i]);
+				strcpy(nch[i], nch[ii]);
+				strcpy(nch[ii], tmp);
+			}
+		}
+	}
+	for (i = 0; i <= j; i++) {
+		printf("%s\n", nch[i]);
+	}
+}

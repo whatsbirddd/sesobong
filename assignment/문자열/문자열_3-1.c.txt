@@ -1,0 +1,38 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+char str[102], sub[102];//문자열하고 단어 입력받는 배열
+int count = 0, count1 = 0;
+
+int main() {
+	int i, j, k, l, l1, l2;
+
+	gets_s(str);//문자열 입력받기
+	scanf("%s", sub);//단어 입력받기
+
+	l1 = strlen(str);//길이 구하기
+	l2 = strlen(sub);//길이 구하기
+
+	for (i = 0; i < l1;) {
+		j = 0;//초기화
+		count = 0;//초기화
+		k = i;//k에 i 대입
+		while ((str[i] == sub[j]) && str[i] != '\0') {//두 문자가 같고 str[i]가 0이 아니라면
+			count++;//갯수세기
+			i++;//다음 원소로 넘어가기 위해 늘리기
+			j++;//다음 원소로 넘어가기 위해 늘리기
+		}
+		if (count == l2) {//갯수 센게 단어의 길이와 같다면
+			count1++;//count1변수 늘리기
+			count = 0;//count는 초기화
+		}
+		else {//아니라면,,
+			i = k;//i에 k대입하기
+			i++;
+		}
+
+	}
+	printf("%d", count1);//몇갠지 출력하기
+	return 0;
+}

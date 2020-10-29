@@ -1,0 +1,35 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+
+
+int main() {
+	char str[100];//문자열 
+	double n[100];//숫자만 받는 배열
+	int i, j = 0, len, num = 0;
+
+	gets_s(str);//입력받기 
+	len = strlen(str);//길이구하기
+
+	for (i = 0; i <= len; i++) {//문자열 길이만큼
+		if (str[i] >= '0' && str[i] <= '9') {//만약 숫자라면
+			if (num == 0) {//num이 0이라면?(앞에서 숫자를 입력받지 않았다는 소뤼)
+				num = str[i] - '0';//숫자로 처리해서 num에 집어넣기
+			}
+			else {
+				num = num * 10 + str[i] - '0';//앞에서 입력받았던 숫자가 있었다는 뜻이므로, 10곱해서 입력
+			}
+		}
+		else {//숫자아니면
+			if (num != 0) {//전에 숫자를 입력받았었다면
+				n[j] = num;//숫자 넣어주기
+				j++;//숫자받는 배열에서 다음 원소자리에 숫자 넣기 위해서 ...
+			}
+
+			num = 0;//다시 숫자 초기화 해주깅
+		}
+	}
+	for (i = 0; i < j; i++) {
+		printf(" %.0lf", n[i]);//구한 숫자들 출력하기~
+	}
+}
