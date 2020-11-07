@@ -1,0 +1,22 @@
+#pragma warning(disable:4996)
+#include<stdio.h> 
+#include<string.h>
+#include<stdlib.h>
+
+
+int main() {
+	int* ch = NULL;
+	int len, i, sum = 0;
+
+	scanf("%d", &len);
+
+	ch = (int*)malloc(len * sizeof(int));
+	for (i = 0; i < len; i++) {
+		scanf("%d", (ch + i));
+		sum += *(ch + i);
+	}
+	printf("%d", sum);
+	return 0;
+}
+
+
