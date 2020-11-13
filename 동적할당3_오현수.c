@@ -3,9 +3,9 @@
 
 int main()
 {
-    int N,d;
+    int N,D;
     double *parr;
-    scanf("%d %d",&N,&d);
+    scanf("%d",&N);
     parr=(double *)malloc(sizeof(double)*N);
     int j;
     j=N;
@@ -13,13 +13,16 @@ int main()
     {
         scanf("%lf",&parr[i]);
     }
-    for(int i=j;i>j-d;i--)
+    scanf("%d",&D);
+    for(int i=j;i>j-D;i--)
     {
         parr[i]=0;
     }
-    for(int i=0;i<j-d;i++)
+    parr=(double*)realloc(parr,sizeof(double)*(N-D));
+    for(int i=0;i<j-D;i++)
     {
         printf("%lf\n",parr[i]);
     }
+    free(parr);
     return 0;
 }
